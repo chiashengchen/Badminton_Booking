@@ -2,26 +2,30 @@
 
 from selenium import webdriver
 from selenium.common.exceptions import UnexpectedAlertPresentException
-import time
 import logging
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.common.by import By
-from SportsCenter import SportCenter
 
-year = 2022
-month = input()
-day = input()
-if len(day) < 2:
-    brookingDay = str(year) + '/'+ str(month) + '/0' + str(day)
-else:
-    brookingDay = str(year) + '/'+ str(month) + '/' + str(day)
+from . import SportCenter
+from ..Time.ScheduledTime import ScheduledTime
+from ..Info.PersonalInfo import PersonalInfo
+
+
+
 
 class YongheSportCenter(SportCenter):
-    def run(self):
-        driver = webdriver.Chrome('./chromedriver')
-        driver.get('https://scr.cyc.org.tw/tp10.aspx?module=login_page&files=login&PT=1')
+    def __init__(self, time, info):
+        SportCenter.__init__(self, time, info)
+        self.url = 'https://scr.cyc.org.tw/tp10.aspx?module=login_page&files=login&PT=1'
 
+    def fakeRun(self):
+        driver = webdriver.Chrome('./chromedriver')
+        driver.get(self.url)
+        if len(self.scheduledTime.day) < 2:
+            brookingDay = str(self.scheduledTime.year) + '/'+ str(self.scheduledTime.month) + '/0' + str(self.scheduledTime.day)
+        else:
+            brookingDay = str(self.scheduledTime.year) + '/'+ str(self.scheduledTime.month) + '/' + str(self.scheduledTime.day)
         main_window_handle = None
         while not main_window_handle:
             main_window_handle = driver.current_window_handle
@@ -38,11 +42,11 @@ class YongheSportCenter(SportCenter):
         account = driver.find_element(By.XPATH, "//*[@id=\"ContentPlaceHolder1_loginid\"]")
         account.clear()
         # 身分證
-        account.send_keys("A000000000")
+        account.send_keys(self.personalInfo.account)
         password = driver.find_element(By.XPATH, '//*[@id=\"loginpw\"]') #網頁的密碼點
         password.clear()
         # 密碼
-        password.send_keys("123456")
+        password.send_keys(self.personalInfo.pwd)
 
         verification_code = input()
         password = driver.find_element(By.XPATH, '//*[@id=\"ContentPlaceHolder1_Captcha_text\"]') #網頁的密碼點
@@ -65,4 +69,10 @@ class YongheSportCenter(SportCenter):
         print('finish')
 
 if __name__ == '__main__':
-    center = YongheSportCenter()
+    year = 2022
+    month = input()
+    day = input()
+    time = ScheduledTime(year, month, day, 0, 0)
+    personalInfo = PersonalInfo('A000000000', '123456')
+    center = YongheSportCenter(time, personalInfo)
+    center.fakeRun()
