@@ -7,7 +7,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.common.by import By
 
-from . import SportCenter
+from .SportsCenter import SportCenter
 from ..Time.ScheduledTime import ScheduledTime
 from ..Info.PersonalInfo import PersonalInfo
 
