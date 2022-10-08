@@ -1,5 +1,3 @@
-
-
 from selenium import webdriver
 from selenium.common.exceptions import UnexpectedAlertPresentException
 import logging
@@ -11,21 +9,18 @@ from Center.SportsCenter import SportCenter
 from Time.ScheduledTime import ScheduledTime
 from Info.PersonalInfo import PersonalInfo
 
-
-
-
 class YongheSportCenter(SportCenter):
     def __init__(self, time, info):
         SportCenter.__init__(self, time, info)
         self.url = 'https://scr.cyc.org.tw/tp10.aspx?module=login_page&files=login&PT=1'
 
+    
+    # TODO : try & except
     def fakeRun(self):
         driver = webdriver.Chrome('./chromedriver')
         driver.get(self.url)
-        if len(self.scheduledTime.day) < 2:
-            brookingDay = str(self.scheduledTime.year) + '/'+ str(self.scheduledTime.month) + '/0' + str(self.scheduledTime.day)
-        else:
-            brookingDay = str(self.scheduledTime.year) + '/'+ str(self.scheduledTime.month) + '/' + str(self.scheduledTime.day)
+        alert = Alert(driver)
+        brookingDay = ScheduledTime.getScheduledDate()
         main_window_handle = None
         while not main_window_handle:
             main_window_handle = driver.current_window_handle
@@ -37,17 +32,16 @@ class YongheSportCenter(SportCenter):
             driver.find_element(By.XPATH, u'//a[text()="確定"]').click()
         except UnexpectedAlertPresentException:
             print('UnexpectedAlertPresentException')
-        alert = Alert(driver)
+        
         # Login
         account = driver.find_element(By.XPATH, "//*[@id=\"ContentPlaceHolder1_loginid\"]")
         account.clear()
         # 身分證
-        account.send_keys(self.personalInfo.account)
+        account.send_keys(self.personalInfo.getAccount())
         password = driver.find_element(By.XPATH, '//*[@id=\"loginpw\"]') #網頁的密碼點
         password.clear()
         # 密碼
-        password.send_keys(self.personalInfo.pwd)
-
+        password.send_keys(self.personalInfo.getPassword())
         verification_code = input()
         password = driver.find_element(By.XPATH, '//*[@id=\"ContentPlaceHolder1_Captcha_text\"]') #網頁的密碼點
         password.clear()
@@ -55,9 +49,7 @@ class YongheSportCenter(SportCenter):
         driver.find_element(By.XPATH, '//*[@id=\"login_but\"]').click()
         driver.find_element(By.XPATH, '//*[@title=\"羽球\"]').click()
         driver.find_element(By.XPATH, '//*[@src=\"img/conf01.png\"]').click()
-
         alert.accept()
-        # TODO : try & except
         driver.find_element(By.XPATH, '//*[@onclick=\"GoToStep2(\'' + brookingDay+ '\',1)\"]').click()
         driver.find_element(By.XPATH, '//tbody/tr[8]/td[4]/img[1]').click()
         print(alert.text)

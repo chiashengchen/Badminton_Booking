@@ -5,9 +5,19 @@ from Time.ScheduledTime import ScheduledTime
 
 if __name__ == '__main__':
     year = 2022
+    print("Booking month :")
     month = input()
+    print("Booking day :")
     day = input()
-    time = ScheduledTime(year, month, day, 0, 0)
-    personalInfo = PersonalInfo('A000000000', '123456')
+    print("Start time :")
+    startTime = input()
+    print("End time")
+    endTime = input()
+    time = ScheduledTime(year, month, day, startTime, endTime)
+    print("Account :")
+    account = input()
+    print("Password :")
+    pwd = input()
+    personalInfo = PersonalInfo(account, pwd)
     center = YongheSportCenter(time, personalInfo)
     center.fakeRun()

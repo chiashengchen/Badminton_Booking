@@ -1,10 +1,12 @@
+import threading
 from Time.ScheduledTime import ScheduledTime
 from Info.PersonalInfo import PersonalInfo
-import threading
+from datetime import datetime
 class SportCenter(threading.Thread):
     scheduledTime : ScheduledTime
     personalInfo : PersonalInfo
     url : str
+    appointmentInterval : int
 
     def __init__(self, time, info):
         threading.Thread.__init__(self)
