@@ -6,21 +6,20 @@ from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.common.by import By
 
 from Center.SportsCenter import SportCenter
-from Time.ScheduledTime import ScheduledTime
+from Time.ScheduledTime import DayPeriods, ScheduledTime
 from Info.PersonalInfo import PersonalInfo
 
 class YongheSportCenter(SportCenter):
     def __init__(self, time, info):
         SportCenter.__init__(self, time, info)
         self.url = 'https://scr.cyc.org.tw/tp10.aspx?module=login_page&files=login&PT=1'
-
     
     # TODO : try & except
     def fakeRun(self):
         driver = webdriver.Chrome('./chromedriver')
         driver.get(self.url)
         alert = Alert(driver)
-        brookingDay = ScheduledTime.getScheduledDate()
+        brookingDay = self.scheduledTime.getScheduledDate()
         main_window_handle = None
         while not main_window_handle:
             main_window_handle = driver.current_window_handle
@@ -51,6 +50,14 @@ class YongheSportCenter(SportCenter):
         driver.find_element(By.XPATH, '//*[@src=\"img/conf01.png\"]').click()
         alert.accept()
         driver.find_element(By.XPATH, '//*[@onclick=\"GoToStep2(\'' + brookingDay+ '\',1)\"]').click()
+
+        if self.scheduledTime.getCalendarDayPeriods() == DayPeriods.AFTERNOON:
+            driver.find_element(By.XPATH, '//tbody/tr[2]/td[1]/span[1]/div[2]').click()
+            # //tbody/tr[2]/td[1]/span[1]/div[2]
+        elif self.scheduledTime.getCalendarDayPeriods() == DayPeriods.EVENING:
+            driver.find_element(By.XPATH, '//tbody/tr[2]/td[1]/span[1]/div[3]').click()
+            # //tbody/tr[2]/td[1]/span[1]/div[3]
+        print(driver.find_element(By.XPATH, '//tbody/tr[8]/td[4]/img[1]').get_attribute("onclick"))
         driver.find_element(By.XPATH, '//tbody/tr[8]/td[4]/img[1]').click()
         print(alert.text)
         # 已被預約！
