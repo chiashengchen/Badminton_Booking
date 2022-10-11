@@ -7,6 +7,7 @@ class SportCenter(threading.Thread):
     personalInfo : PersonalInfo
     url : str
     appointmentInterval : int
+    court : int
 
     def __init__(self, time, info):
         threading.Thread.__init__(self)

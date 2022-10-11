@@ -12,6 +12,6 @@ if __name__ == '__main__':
     time = ScheduledTime(year, month, day, startTime, endTime, 2, 1)
     account = input("Account :")
     pwd = input("Password :")
-    personalInfo = PersonalInfo('A000000000', '00000')
+    personalInfo = PersonalInfo(account, pwd)
     center = YongheSportCenter(time, personalInfo)
     center.fakeRun()
