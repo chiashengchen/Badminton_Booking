@@ -10,12 +10,12 @@ from Center.SportsCenter import SportCenter
 from Time.ScheduledTime import DayPeriods, ScheduledTime
 from Info.PersonalInfo import PersonalInfo
 
-class YongheSportCenter(SportCenter):
+class JhongJhengSportCenter(SportCenter):
     def __init__(self, time, info):
         SportCenter.__init__(self, time, info)
-        self.court = 6
+        self.court = 5
         self.driver = webdriver.Chrome('./chromedriver')
-        self.driver.get('https://scr.cyc.org.tw/tp10.aspx?module=login_page&files=login&PT=1')
+        self.driver.get('https://www.cjcf.com.tw/jj01.aspx?module=login_page&files=login&PT=1')
         self.alert = Alert(self.driver)
     
     def findEmptyCourt(self, startTime, endTime) :
@@ -23,11 +23,7 @@ class YongheSportCenter(SportCenter):
         for time in range(startTime, endTime):
             courts = []
             for i in range(self.court) :
-            # 2 + startTime * self.court
-                if i == 0:
-                    td = 4
-                else :
-                    td = 3
+                td = 4
                 if "alert" in self.driver.find_element(By.XPATH, '//tbody/tr[' + str(2 + time * self.court + i) + ']/td[' + str(td) + ']/img[1]').get_attribute("onclick"):
                     continue
                 courts.append('//tbody/tr[' + str(2 + time * self.court + i) + ']/td[4]/img[1]')
@@ -61,9 +57,11 @@ class YongheSportCenter(SportCenter):
         password.clear()
         # 密碼
         password.send_keys(self.personalInfo.getPassword())
+        
         WebDriverWait(self.driver, 10).until(lambda driver: len(self.driver.find_element(By.XPATH, '//*[@id=\"ContentPlaceHolder1_Captcha_text\"]').get_attribute("value")) == 5)
         self.driver.find_element(By.XPATH, '//*[@id=\"login_but\"]').click()
         self.driver.find_element(By.XPATH, '//*[@title=\"羽球\"]').click()
+        self.alert.accept()
         self.driver.find_element(By.XPATH, '//*[@src=\"img/conf01.png\"]').click()
         self.alert.accept()
         self.driver.find_element(By.XPATH, '//*[@onclick=\"GoToStep2(\'' + brookingDay+ '\',1)\"]').click()
@@ -97,12 +95,3 @@ class YongheSportCenter(SportCenter):
                 # loading
                 self.driver.find_element(By.XPATH, '//*[@id="ContentPlaceHolder1_Step3Info_lab"]/span[2]/a[3]').click()
         print('finish')
-
-if __name__ == '__main__':
-    year = 2022
-    month = input()
-    day = input()
-    time = ScheduledTime(year, month, day, 0, 0)
-    personalInfo = PersonalInfo('A000000000', '123456')
-    center = YongheSportCenter(time, personalInfo)
-    center.fakeRun()

@@ -21,8 +21,8 @@ class ScheduledTime:
         self.day = day
         self.startTime = int(startTime)
         self.endTime = int(endTime)
-        self.hours = hours
-        self.court = court
+        self.hours = int(hours)
+        self.court = int(court)
         if self.endTime <= self.startTime:
             raise BaseException("Error")
 
@@ -34,7 +34,6 @@ class ScheduledTime:
         return brookingDay
 
     def getCalendarDayPeriods(self):
-        print(type(self.startTime))
         if self.startTime >= 18:
             return 2
         elif self.startTime >= 12:
