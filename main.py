@@ -20,4 +20,4 @@ if __name__ == '__main__':
     centers.append(JhongJhengSportCenter(time, personalInfo))
     centers.append(YongheSportCenter(time, personalInfo))
     for center in centers:
-        center.fakeRun()
+        center.start()

@@ -35,8 +35,24 @@ class YongheSportCenter(SportCenter):
                 emptyCourts.append(courts)
         return emptyCourts
 
+    def formatTime(self) :
+        if self.scheduledTime.getCalendarDayPeriods() == DayPeriods.AFTERNOON:
+            self.driver.find_element(By.XPATH, '//tbody/tr[2]/td[1]/span[1]/div[2]').click()
+            startTime = self.scheduledTime.startTime - 12
+            endTime = self.scheduledTime.endTime - 12
+            
+        elif self.scheduledTime.getCalendarDayPeriods() == DayPeriods.EVENING:
+            self.driver.find_element(By.XPATH, '//tbody/tr[2]/td[1]/span[1]/div[3]').click()
+            startTime = self.scheduledTime.startTime - 18
+            endTime = self.scheduledTime.endTime - 18
+
+        else :
+            startTime = self.scheduledTime.startTime - 6
+            endTime = self.scheduledTime.endTime - 6
+        return startTime, endTime
+
     # TODO : try & except
-    def fakeRun(self):
+    def run(self):
         startTime = 0
         endTime = 0
         brookingDay = self.scheduledTime.getScheduledDate()
@@ -61,26 +77,14 @@ class YongheSportCenter(SportCenter):
         password.clear()
         # 密碼
         password.send_keys(self.personalInfo.getPassword())
-        WebDriverWait(self.driver, 10).until(lambda driver: len(self.driver.find_element(By.XPATH, '//*[@id=\"ContentPlaceHolder1_Captcha_text\"]').get_attribute("value")) == 5)
+        WebDriverWait(self.driver, 100).until(lambda driver: len(self.driver.find_element(By.XPATH, '//*[@id=\"ContentPlaceHolder1_Captcha_text\"]').get_attribute("value")) == 5)
         self.driver.find_element(By.XPATH, '//*[@id=\"login_but\"]').click()
         self.driver.find_element(By.XPATH, '//*[@title=\"羽球\"]').click()
         self.driver.find_element(By.XPATH, '//*[@src=\"img/conf01.png\"]').click()
         self.alert.accept()
         self.driver.find_element(By.XPATH, '//*[@onclick=\"GoToStep2(\'' + brookingDay+ '\',1)\"]').click()
 
-        if self.scheduledTime.getCalendarDayPeriods() == DayPeriods.AFTERNOON:
-            self.driver.find_element(By.XPATH, '//tbody/tr[2]/td[1]/span[1]/div[2]').click()
-            startTime = self.scheduledTime.startTime - 12
-            endTime = self.scheduledTime.endTime - 12
-            
-        elif self.scheduledTime.getCalendarDayPeriods() == DayPeriods.EVENING:
-            self.driver.find_element(By.XPATH, '//tbody/tr[2]/td[1]/span[1]/div[3]').click()
-            startTime = self.scheduledTime.startTime - 18
-            endTime = self.scheduledTime.endTime - 18
-
-        else :
-            startTime = self.scheduledTime.startTime - 6
-            endTime = self.scheduledTime.endTime - 6
+        startTime, endTime = self.formatTime()
         
         emptyCourts = self.findEmptyCourt(startTime, endTime)
         if len(emptyCourts) < self.scheduledTime.hours:
@@ -92,6 +96,7 @@ class YongheSportCenter(SportCenter):
             for court in range(self.scheduledTime.court):
                 if(time != 0 or court != 0) : 
                     self.driver.find_element(By.XPATH, '//*[@onclick=\"GoToStep2(\'' + brookingDay+ '\',1)\"]').click()
+                    startTime, endTime = self.formatTime()
                 self.driver.find_element(By.XPATH, emptyCourts[time][court]).click()
                 self.alert.accept()
                 # loading
