@@ -30,7 +30,7 @@ class YongheSportCenter(SportCenter):
                     td = 3
                 if "alert" in self.driver.find_element(By.XPATH, '//tbody/tr[' + str(2 + time * self.court + i) + ']/td[' + str(td) + ']/img[1]').get_attribute("onclick"):
                     continue
-                courts.append('//tbody/tr[' + str(2 + time * self.court + i) + ']/td[4]/img[1]')
+                courts.append('//tbody/tr[' + str(2 + time * self.court + i) + ']/td[' + str(td) + ']/img[1]')
             if len(courts) >= self.scheduledTime.court:
                 emptyCourts.append(courts)
         return emptyCourts
@@ -102,7 +102,7 @@ class YongheSportCenter(SportCenter):
                 # loading
                 self.driver.find_element(By.XPATH, '//*[@id="ContentPlaceHolder1_Step3Info_lab"]/span[2]/a[3]').click()
         print('finish')
-
+# //*[@id="ContentPlaceHolder1_Step2_data"]/table/tbody/tr[25]/td[3]/img
 if __name__ == '__main__':
     year = 2022
     month = input()

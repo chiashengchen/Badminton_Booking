@@ -1,3 +1,5 @@
+# https://www.cjcf.com.tw/CG01.aspx?module=login_page&files=login&PT=1
+
 from selenium import webdriver
 from selenium.common.exceptions import UnexpectedAlertPresentException
 import logging
@@ -10,12 +12,12 @@ from Center.SportsCenter import SportCenter
 from Time.ScheduledTime import DayPeriods, ScheduledTime
 from Info.PersonalInfo import PersonalInfo
 
-class JhongJhengSportCenter(SportCenter):
+class BanqiaoSportCenter(SportCenter):
     def __init__(self, time, info):
         SportCenter.__init__(self, time, info)
-        self.court = 5
+        self.court = 6
         self.driver = webdriver.Chrome('./chromedriver')
-        self.driver.get('https://www.cjcf.com.tw/jj01.aspx?module=login_page&files=login&PT=1')
+        self.driver.get('https://www.cjcf.com.tw/CG01.aspx?module=login_page&files=login&PT=1')
         self.alert = Alert(self.driver)
     
     def findEmptyCourt(self, startTime, endTime) :
