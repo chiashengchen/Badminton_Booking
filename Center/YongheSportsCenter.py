@@ -6,13 +6,13 @@ from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 
-from Center.SportsCenter import SportCenter
+from Center.SportsCenter import SportsCenter
 from Time.ScheduledTime import DayPeriods, ScheduledTime
 from Info.PersonalInfo import PersonalInfo
 
-class YongheSportCenter(SportCenter):
+class YongheSportCenter(SportsCenter):
     def __init__(self, time, info):
-        SportCenter.__init__(self, time, info)
+        SportsCenter.__init__(self, time, info)
         self.court = 6
         self.driver = webdriver.Chrome('./chromedriver')
         self.driver.get('https://scr.cyc.org.tw/tp10.aspx?module=login_page&files=login&PT=1')

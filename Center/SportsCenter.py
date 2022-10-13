@@ -2,17 +2,14 @@ import threading
 from Time.ScheduledTime import ScheduledTime
 from Info.PersonalInfo import PersonalInfo
 from datetime import datetime
-class SportCenter(threading.Thread):
-    scheduledTime : ScheduledTime
-    personalInfo : PersonalInfo
+class SportsCenter:
     url : str
     appointmentInterval : int
-    court : int
+    totalCourt : int
 
-    def __init__(self, time, info):
-        threading.Thread.__init__(self)
-        self.scheduledTime = time
-        self.personalInfo  = info
+    def __init__(self, url, totalCourt):
+        self.url = url
+        self.totalCourt = totalCourt
 
     # thread start function
     def run(self):

@@ -1,5 +1,6 @@
 
 from Center.JhongJhengSportsCenter import JhongJhengSportCenter
+from Center.SportsCenter import SportsCenter
 from Center.YongheSportsCenter import YongheSportCenter
 from Info.PersonalInfo import PersonalInfo
 from Time.ScheduledTime import ScheduledTime
@@ -19,7 +20,8 @@ if __name__ == '__main__':
     account = input("Account :")
     pwd = input("Password :")
     personalInfo = PersonalInfo(account, pwd)
-    centers.append(Booking(JJLogin(time, personalInfo)))
+    center = SportsCenter('https://www.cjcf.com.tw/jj01.aspx?module=login_page&files=login&PT=1', 5)
+    centers.append(Booking(time, personalInfo, center, JJLogin()))
     for center in centers:
         center.handle()
     # centers.append(JhongJhengSportCenter(time, personalInfo))
