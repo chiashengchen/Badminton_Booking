@@ -16,9 +16,9 @@ class ScheduledTime:
     court : int
     
     def __init__(self, year, month, day, startTime, endTime, hours, court):
-        self.year = year
-        self.month = month
-        self.day = day
+        self.year =int(year)
+        self.month = int(month)
+        self.day = int(day)
         self.startTime = int(startTime)
         self.endTime = int(endTime)
         self.hours = int(hours)
@@ -27,7 +27,7 @@ class ScheduledTime:
             raise BaseException("Error")
 
     def getScheduledDate(self):
-        if len(self.day) < 2:
+        if self.day < 10:
             brookingDay = str(self.year) + '/'+ str(self.month) + '/0' + str(self.day)
         else:
             brookingDay = str(self.year) + '/'+ str(self.month) + '/' + str(self.day)
