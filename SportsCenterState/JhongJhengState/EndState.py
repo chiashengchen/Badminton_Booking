@@ -1,5 +1,5 @@
 from SportsCenterState.State import State
 
 class EndState(State):
-    def handle(self, booking):
+    def handle(self):
         print("finish")

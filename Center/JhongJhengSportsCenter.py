@@ -5,7 +5,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-
+from SportsCenterState.JhongJhengState.LoginState import LoginState
 from Center.SportsCenter import SportsCenter
 from Time.ScheduledTime import DayPeriods, ScheduledTime
 from Info.PersonalInfo import PersonalInfo
@@ -13,11 +13,15 @@ from Info.PersonalInfo import PersonalInfo
 class JhongJhengSportCenter(SportsCenter):
     def __init__(self, time, info):
         SportsCenter.__init__(self, time, info)
-        self.court = 5
+        self.totalCourts = 5
         self.driver = webdriver.Chrome('./chromedriver')
-        self.driver.get('https://www.cjcf.com.tw/jj01.aspx?module=login_page&files=login&PT=1')
-        self.alert = Alert(self.driver)
+        print(type(self.driver))
+        self.driver.get('https://www.cjcf.com.tw/jj01.aspx?module=login_page&files=login&PT=1') 
+        self.state = LoginState()
     
+    def run(self):
+        self.state.handle(self)
+
     def findEmptyCourt(self, startTime, endTime) :
         emptyCourts = []
         for time in range(startTime, endTime):

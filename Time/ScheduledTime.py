@@ -40,3 +40,9 @@ class ScheduledTime:
             return 1
         else:
             return 0
+
+    def getStartTime(self):
+        return self.startTime - (6 + 6 * self.getCalendarDayPeriods())
+
+    def getEndTime(self):
+        return self.endTime - (6 + 6 * self.getCalendarDayPeriods())

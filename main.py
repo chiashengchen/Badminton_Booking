@@ -1,11 +1,9 @@
 
 from Center.JhongJhengSportsCenter import JhongJhengSportCenter
-from Center.SportsCenter import SportsCenter
 from Center.YongheSportsCenter import YongheSportCenter
 from Info.PersonalInfo import PersonalInfo
 from Time.ScheduledTime import ScheduledTime
 from Thread.Booking import Booking
-from SportsCenterState.JhongJhengState.LoginState import LoginState as JJLogin
 
 if __name__ == '__main__':
     centers = []
@@ -20,10 +18,9 @@ if __name__ == '__main__':
     account = input("Account :")
     pwd = input("Password :")
     personalInfo = PersonalInfo(account, pwd)
-    center = SportsCenter('https://www.cjcf.com.tw/jj01.aspx?module=login_page&files=login&PT=1', 5)
-    centers.append(Booking(time, personalInfo, center, JJLogin()))
+    centers.append(JhongJhengSportCenter(time, personalInfo))
     for center in centers:
-        center.handle()
+        center.run()
     # centers.append(JhongJhengSportCenter(time, personalInfo))
     # centers.append(YongheSportCenter(time, personalInfo))
     # for center in centers:
