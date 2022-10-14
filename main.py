@@ -4,6 +4,8 @@ from Center.YongheSportsCenter import YongheSportCenter
 from Info.PersonalInfo import PersonalInfo
 from Time.ScheduledTime import ScheduledTime
 from Center.BanqiaoSportsCenter import BanqiaoSportCenter
+from Center.DaanSportsCenter import DaanSporetsCenter
+from Center.NangangSportsCenter import NangangSporetsCenter
 
 if __name__ == '__main__':
     centers = []
@@ -13,8 +15,10 @@ if __name__ == '__main__':
     account = input("Account :")
     pwd = input("Password :")
     personalInfo = PersonalInfo(account, pwd)
+    centers.append(DaanSporetsCenter(time1, personalInfo))
     centers.append(JhongJhengSportCenter(time1, personalInfo))
     centers.append(YongheSportCenter(time1, personalInfo))
     centers.append(BanqiaoSportCenter(time2, personalInfo))
+    centers.append(NangangSporetsCenter(time1, personalInfo))
     for center in centers:
         center.start()
