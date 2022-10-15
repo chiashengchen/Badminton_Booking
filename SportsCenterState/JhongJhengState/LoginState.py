@@ -28,7 +28,7 @@ class LoginState(State) :
         password.clear()
         # 密碼
         password.send_keys(center.info.getPassword())
-        WebDriverWait(center.driver, 10).until(lambda driver: len(center.driver.find_element(By.XPATH, '//*[@id=\"ContentPlaceHolder1_Captcha_text\"]').get_attribute("value")) == 5)
+        WebDriverWait(center.driver, 600).until(lambda driver: len(center.driver.find_element(By.XPATH, '//*[@id=\"ContentPlaceHolder1_Captcha_text\"]').get_attribute("value")) == 5)
         center.driver.find_element(By.XPATH, '//*[@id=\"login_but\"]').click()
         center.setState(MainPageState())
         center.handle()

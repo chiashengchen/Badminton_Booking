@@ -21,6 +21,7 @@ class SportsCenter(threading.Thread):
         self.info = info
         self.targetTime = -1
         self.orderNum = 0
+        self.emptyCourts = None
 
     def setState(self, state) :
         self.state = state

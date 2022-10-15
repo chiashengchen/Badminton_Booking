@@ -3,7 +3,6 @@ from Center.JhongJhengSportsCenter import JhongJhengSportCenter
 from Center.YongheSportsCenter import YongheSportCenter
 from Info.PersonalInfo import PersonalInfo
 from Time.ScheduledTime import ScheduledTime
-from Thread.Booking import Booking
 
 if __name__ == '__main__':
     centers = []
@@ -18,9 +17,10 @@ if __name__ == '__main__':
     account = input("Account :")
     pwd = input("Password :")
     personalInfo = PersonalInfo(account, pwd)
-    centers.append(JhongJhengSportCenter(time, personalInfo))
+    # centers.append(JhongJhengSportCenter(time, personalInfo))
+    centers.append(YongheSportCenter(time, personalInfo))
     for center in centers:
-        center.run()
+        center.start()
     # centers.append(JhongJhengSportCenter(time, personalInfo))
     # centers.append(YongheSportCenter(time, personalInfo))
     # for center in centers:
