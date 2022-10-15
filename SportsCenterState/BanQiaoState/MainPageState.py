@@ -3,12 +3,13 @@ from SportsCenterState.State import State
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.alert import Alert
 from Center.SportsCenter import SportsCenter
-from SportsCenterState.YongHeState.SelectDayState import SelectDayState
+from SportsCenterState.BanQiaoState.SelectDayState import SelectDayState
 
 class MainPageState(State):
     def handle(self, center : SportsCenter):
         alert = Alert(center.driver)
         center.driver.find_element(By.XPATH, '//*[@title=\"羽球\"]').click()
+        alert.accept()
         center.driver.find_element(By.XPATH, '//*[@src=\"img/conf01.png\"]').click()
         alert.accept()
         center.setState(SelectDayState())

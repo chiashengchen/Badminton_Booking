@@ -1,6 +1,6 @@
 from SportsCenterState.State import State
 from selenium.webdriver.common.by import By
-from SportsCenterState.YongHeState.PickCourtState import PickCourtState
+from SportsCenterState.BanQiaoState.PickCourtState import PickCourtState
 from Time.ScheduledTime import DayPeriods
 from Center.SportsCenter import SportsCenter
 
@@ -24,13 +24,9 @@ class CalculateEmptyCourtsState(State):
         for time in range(startTime, endTime):
             courts = []
             for i in range(center.totalCourts) :
-                if i == 0:
-                    td = 4
-                else :
-                    td = 3
-                if "alert" in center.driver.find_element(By.XPATH, '//tbody/tr[' + str(2 + time * center.totalCourts + i) + ']/td[' + str(td) + ']/img[1]').get_attribute("onclick"):
+                if "alert" in center.driver.find_element(By.XPATH, '//tbody/tr[' + str(2 + time * center.totalCourts + i) + ']/td[4]/img[1]').get_attribute("onclick"):
                     continue
-                courts.append('//tbody/tr[' + str(2 + time * center.totalCourts + i) + ']/td[' + str(td) + ']/img[1]')
+                courts.append('//tbody/tr[' + str(2 + time * center.totalCourts + i) + ']/td[4]/img[1]')
             if len(courts) >= center.time.court:
                 emptyCourts.append(courts)
                 numOfCourt += 1

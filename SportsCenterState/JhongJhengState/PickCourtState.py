@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.alert import Alert
 from Time.ScheduledTime import DayPeriods
 from Center.SportsCenter import SportsCenter
-import SportsCenterState.JhongJhengState.SelectPeriod as Sel
+import SportsCenterState.JhongJhengState.MainPageState as Main
 from SportsCenterState.JhongJhengState.EndState import EndState
 
 class PickCourtState(State):
@@ -23,15 +23,5 @@ class PickCourtState(State):
         else:
             # click go back to home //*[@id="ContentPlaceHolder1_Step3Info_lab"]/span[2]/a[1]
             center.driver.find_element(By.XPATH, '//*[@id="ContentPlaceHolder1_Step3Info_lab"]/span[2]/a[1]').click()
-            center.setState(Sel.SelectPeriod())
+            center.setState(Main.MainPageState())
         center.handle()
-        # for time in range(center.time.hours):
-        #     for court in range(center.time.court):
-        #         if(time != 0 or court != 0) : 
-        #             center.driver.find_element(By.XPATH, '//*[@onclick=\"GoToStep2(\'' + center.time.getScheduledDate() + '\',1)\"]').click()
-        #         center.driver.find_element(By.XPATH, center.emptyCourts[time][court]).click()
-        #         alert.accept()
-        #         # loading
-        #         # 他沒有繼續預定的按鈕 @@
-        #         center.driver.find_element(By.XPATH, '//*[@id="ContentPlaceHolder1_Step3Info_lab"]/span[2]/a[3]').click()
-        # print('finish')

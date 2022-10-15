@@ -3,7 +3,6 @@ from selenium import webdriver
 from jsonschema import SchemaError
 from Time.ScheduledTime import ScheduledTime
 from Info.PersonalInfo import PersonalInfo
-from datetime import datetime
 from SportsCenterState.State import State
 class SportsCenter(threading.Thread):
     time : ScheduledTime

@@ -1,5 +1,6 @@
+
 from SportsCenterState.State import State
-from SportsCenterState.YongHeState.MainPageState import MainPageState
+from SportsCenterState.BanQiaoState.MainPageState import MainPageState
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import UnexpectedAlertPresentException
 from selenium.webdriver.support.ui import WebDriverWait
