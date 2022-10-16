@@ -1,12 +1,15 @@
+from selenium import webdriver
+from SportsCenterState.LinKouState.LoginState import LoginState
 from Center.SportsCenter import SportsCenter
+import SportsCenterState.LinKouState.EndState as End
+from selenium.webdriver.chrome.options import Options
+import Time.ScheduledTime as Time
 from Court.Court import Court
-import Time.ScheduledTime as Time 
-
-class BanQiaoSportsCenter(SportsCenter):
+class LinKouSportsCenter(SportsCenter):
     def __init__(self, time : Time.ScheduledTime):
         SportsCenter.__init__(self, time)
-        self._url = 'https://www.cjcf.com.tw/CG01.aspx?module=login_page&files=login&PT=1'
-        self._totalCourts = 6
+        self._url = 'https://scr.cyc.org.tw/tp17.aspx?module=login_page&files=login&PT=1'
+        self._totalCourts = 4
         self._emptyCourts = self.initEmptyCourts(time)
 
     def initEmptyCourts(self, appointment : Time.ScheduledTime):
@@ -34,5 +37,4 @@ class BanQiaoSportsCenter(SportsCenter):
             time -= 6
         return 2 + time * self._totalCourts + courtNum
         
-    
-    
+

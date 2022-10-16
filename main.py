@@ -1,31 +1,43 @@
-
-from Center.JhongJhengSportsCenter import JhongJhengSportCenter
-from Center.YongHeSportsCenter import YongHeSportCenter
-from Center.BanQiaoSportsCenter import BanQiaoSportCenter
-from Center.NanGangSportsCenter import NanGangSportCenter
-from Center.ZhugUangSportsCenter import ZhugUangSportCenter
+from Appointment.Appointment import Appointment
 from Info.PersonalInfo import PersonalInfo
 from Time.ScheduledTime import ScheduledTime
 
 if __name__ == '__main__':
-    centers = []
+    appointments = []
     year = 2022
-    month = input("Booking month : ")
-    day = input("Booking day : ")
-    startTime = input("Start time : ")
-    endTime = input("End time : ")
-    hours = input("How much time did you want to play ? ")
-    courts = input("How many courts did you want to order ? ")
-    time1 = ScheduledTime(year, month, day, startTime, endTime, int(hours), int(courts))
-    day = input("Booking day for Ban Qiao : ")
-    time2 = ScheduledTime(year, month, day, startTime, endTime, int(hours), int(courts))
-    account = input("Account : ")
-    pwd = input("Password : ")
-    personalInfo = PersonalInfo(account, pwd)
-    centers.append(JhongJhengSportCenter(time1, personalInfo))
-    centers.append(YongHeSportCenter(time1, personalInfo))
-    centers.append(BanQiaoSportCenter(time2, personalInfo))
-    centers.append(NanGangSportCenter(time1, personalInfo))
-    # centers.append(ZhugUangSportCenter(time2, personalInfo))
-    for center in centers:
-        center.start()
+    # month1 = input("Booking month : ")
+    # day1 = input("Booking day : ")
+    # month2 = input("Booking month for Ban Qiao : ")
+    # day2 = input("Booking day for Ban Qiao : ")
+    # startTime = input("Start time : ")
+    # endTime = input("End time : ")
+    # hours = input("How much time did you want to play ? ")
+    # courts = input("How many courts did you want to order ? ")
+    # time1 = ScheduledTime(year, month1, day1, startTime, endTime, int(hours), int(courts))
+    month2 = 12
+    day2 = 1
+    startTime = 19
+    endTime = 21
+    hours = 2
+    courts = 1
+
+    time2 = ScheduledTime(year, month2, day2, startTime, endTime, int(hours), int(courts))
+    account1 = 'A131757866'
+    pwd1 = 'qasx123'
+    account2 = 'A123456789'
+    pwd2 = 'xxxxxxx'
+    infos = []
+    infos.append(PersonalInfo(account1, pwd1))
+    infos.append(PersonalInfo(account2, pwd2))
+    # appointments.append(Appointment(time2, infos, 'BanQiao'))
+    # appointments.append(Appointment(time2, infos, 'DaAn'))
+    appointments.append(Appointment(time2, infos, 'JhongJheng'))
+    # appointments.append(Appointment(time2, infos, 'LinKou'))
+    # appointments.append(Appointment(time2, infos, 'NanGang'))
+    # appointments.append(Appointment(time2, infos, 'YongHe'))
+    # appointments.append(Appointment(time2, infos, 'ZhugUang'))    
+
+    # account : A131757866
+    # pwd : qasx123
+    for appointment in appointments:
+        appointment.start()
