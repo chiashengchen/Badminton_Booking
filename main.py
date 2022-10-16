@@ -3,6 +3,7 @@ from Center.JhongJhengSportsCenter import JhongJhengSportCenter
 from Center.YongHeSportsCenter import YongHeSportCenter
 from Center.BanQiaoSportsCenter import BanQiaoSportCenter
 from Center.NanGangSportsCenter import NanGangSportCenter
+from Center.ZhugUangSportsCenter import ZhugUangSportCenter
 from Info.PersonalInfo import PersonalInfo
 from Time.ScheduledTime import ScheduledTime
 
@@ -21,9 +22,10 @@ if __name__ == '__main__':
     account = input("Account : ")
     pwd = input("Password : ")
     personalInfo = PersonalInfo(account, pwd)
-    # centers.append(JhongJhengSportCenter(time1, personalInfo))
-    # centers.append(YongHeSportCenter(time1, personalInfo))
-    # centers.append(BanQiaoSportCenter(time2, personalInfo))
+    centers.append(JhongJhengSportCenter(time1, personalInfo))
+    centers.append(YongHeSportCenter(time1, personalInfo))
+    centers.append(BanQiaoSportCenter(time2, personalInfo))
     centers.append(NanGangSportCenter(time1, personalInfo))
+    # centers.append(ZhugUangSportCenter(time2, personalInfo))
     for center in centers:
         center.start()

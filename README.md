@@ -16,7 +16,7 @@
 ### Error Handle
 1. 密碼輸入錯誤
 2. 等網頁 load
-3. 預定日期沒辦法訂
+3. 預定日期沒辦法訂 (日期沒到 or 已額滿)
 4. 達到預定限制沒辦法訂
 ### Multi-thread
 1. 多個運動中心同時搶
@@ -27,3 +27,6 @@
 
 ## To Improve
 1. 現在只能分早上、下午、晚上各自預約，不能跨時段
+2. sports center init 各 state
+3. Center 增加可讀性 -> 切出 time 跟 info (多對多)
+4. ScheduledTime -> Appointment
