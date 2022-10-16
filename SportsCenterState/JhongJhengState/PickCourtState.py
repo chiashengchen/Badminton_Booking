@@ -1,12 +1,9 @@
-from lib2to3.pgen2 import driver
 from SportsCenterState.State import State
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.alert import Alert
-from Time.ScheduledTime import DayPeriods
 from Center.SportsCenter import SportsCenter
 import SportsCenterState.JhongJhengState.MainPageState as Main
 from SportsCenterState.JhongJhengState.EndState import EndState
-
 class PickCourtState(State):
     def handle(self, center : SportsCenter):
         alert = Alert(center.driver)

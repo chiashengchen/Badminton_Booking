@@ -1,6 +1,4 @@
 import threading
-from selenium import webdriver
-from jsonschema import SchemaError
 from Time.ScheduledTime import ScheduledTime
 from Info.PersonalInfo import PersonalInfo
 from SportsCenterState.State import State
@@ -13,6 +11,7 @@ class SportsCenter(threading.Thread):
     # emptyCourts : array
     targetTime : int
     orderNum : int
+    appiontmentInterval : int
 
     def __init__(self, time, info):
         threading.Thread.__init__(self)
