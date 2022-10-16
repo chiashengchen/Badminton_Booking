@@ -1,11 +1,4 @@
- 
-# from Thread.Booking import Booking # circular import ??
 
 class State :
-    url : str
-    appointmentInterval : int
-    court : int
-    # booking : Booking
-        
-    def handle(self, booking):
+    def handle(self):
         raise NotImplementedError("Not implement method yet !")

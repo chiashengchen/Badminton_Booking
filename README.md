@@ -28,3 +28,5 @@
 ## To Improve
 1. 現在只能分早上、下午、晚上各自預約，不能跨時段
 2. sports center init 各 state
+3. Center 增加可讀性 -> 切出 time 跟 info (多對多)
+4. ScheduledTime -> Appointment
