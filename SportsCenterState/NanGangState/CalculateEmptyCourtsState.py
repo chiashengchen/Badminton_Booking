@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from SportsCenterState.NanGangState.PickCourtState import PickCourtState
 from Time.ScheduledTime import DayPeriods
 from Center.SportsCenter import SportsCenter
-
+from SportsCenterState.NanGangState.EndState import EndState
 class CalculateEmptyCourtsState(State):
     # TODO : calculate continuous time courts
     def handle(self, center : SportsCenter):
@@ -39,11 +39,12 @@ class CalculateEmptyCourtsState(State):
         if numOfCourt < center.time.hours:
             print("Not enough courts !!")
             return
-
-        self.findContinousCorts(emptyCourts, center)
-
         center.emptyCourts = emptyCourts
-        center.setState(PickCourtState())
+
+        if(self.findContinousCorts(emptyCourts, center)):
+            center.setState(PickCourtState())
+        else :
+            center.setState(EndState())
         center.handle()
 
     def findContinousCorts(self, emptyCourts, center : SportsCenter):
@@ -63,9 +64,10 @@ class CalculateEmptyCourtsState(State):
                 break
         if curContinousNum != center.time.hours:
             print("No continous courts !!")
-            return
+            return 0
         targetCourts = []
         for i in range(targetTime, targetTime + curContinousNum):
             targetCourts.append(emptyCourts[i])
         center.targetTime = targetTime + center.time.startTime
         center.targetCourts = targetCourts
+        return 1
