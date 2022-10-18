@@ -13,6 +13,9 @@
 5. 之後手動取消不要的場
 
 ## TODO
+### Add Sport Center
+- 中山、林口、大安
+
 ### Error Handle
 1. 密碼輸入錯誤
 2. 等網頁 load
