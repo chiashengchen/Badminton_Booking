@@ -14,6 +14,7 @@ class PickCourtState(State):
                 continue
             center.driver.find_element(By.XPATH, court).click()
             center.orderNum += 1
+            print("Order " + str(center.orderNum) + " in Zhug Uang")
             break
         alert.accept()
         if center.orderNum == center.time.hours:

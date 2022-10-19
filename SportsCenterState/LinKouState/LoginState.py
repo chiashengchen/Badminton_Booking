@@ -1,13 +1,11 @@
-
 from SportsCenterState.State import State
-from SportsCenterState.JhongJhengState.MainPageState import MainPageState
+from SportsCenterState.LinKouState.MainPageState import MainPageState
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoAlertPresentException
-from selenium.webdriver.common.alert import Alert
 from selenium.common.exceptions import UnexpectedAlertPresentException
 from selenium.webdriver.support.ui import WebDriverWait
 from Center.SportsCenter import SportsCenter
-
+from selenium.common.exceptions import NoAlertPresentException
+from selenium.webdriver.common.alert import Alert
 
 class LoginState(State) :
     
@@ -28,7 +26,6 @@ class LoginState(State) :
         password.send_keys(center.info.getPassword())
         WebDriverWait(center.driver, 600).until(lambda driver: len(center.driver.find_element(By.XPATH, '//*[@id=\"ContentPlaceHolder1_Captcha_text\"]').get_attribute("value")) == 5)
         center.driver.find_element(By.XPATH, '//*[@id=\"login_but\"]').click()
-        # TODO 驗證碼錯誤 NoAlertPresentException
         try:
             if (alert != None and '驗證碼錯誤' in alert.text):
                 center.setState(LoginState())

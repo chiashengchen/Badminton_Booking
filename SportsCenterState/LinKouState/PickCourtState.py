@@ -2,8 +2,9 @@ from SportsCenterState.State import State
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.alert import Alert
 from Center.SportsCenter import SportsCenter
-import SportsCenterState.JhongJhengState.MainPageState as Main
-from SportsCenterState.JhongJhengState.EndState import EndState
+import SportsCenterState.LinKouState.SelectDayState as Sel
+from SportsCenterState.LinKouState.EndState import EndState
+
 class PickCourtState(State):
     def handle(self, center : SportsCenter):
         alert = Alert(center.driver)
@@ -13,13 +14,13 @@ class PickCourtState(State):
                 continue
             center.driver.find_element(By.XPATH, court).click()
             center.orderNum += 1
-            print("Order " + str(center.orderNum) + " in Jhong Jheng")
+            print("Order " + str(center.orderNum) + " in Lin Kou")
             break
         alert.accept()
         if center.orderNum == center.time.hours:
             center.setState(EndState)
         else:
-            # click go back to home //*[@id="ContentPlaceHolder1_Step3Info_lab"]/span[2]/a[1]
-            center.driver.find_element(By.XPATH, '//*[@id="ContentPlaceHolder1_Step3Info_lab"]/span[2]/a[1]').click()
-            center.setState(Main.MainPageState())
+            # //*[@id="ContentPlaceHolder1_Step3Info_lab"]/span[2]/a[3]
+            center.driver.find_element(By.XPATH, '//*[@id="ContentPlaceHolder1_Step3Info_lab"]/span[2]/a[3]').click()
+            center.setState(Sel.SelectDayState())
         center.handle()

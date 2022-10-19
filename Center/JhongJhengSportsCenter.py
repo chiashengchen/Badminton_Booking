@@ -1,7 +1,7 @@
 from selenium import webdriver
 from SportsCenterState.JhongJhengState.LoginState import LoginState
 from Center.SportsCenter import SportsCenter
-class JhongJhengSportCenter(SportsCenter):
+class JhongJhengSportsCenter(SportsCenter):
     def __init__(self, time, info):
         SportsCenter.__init__(self, time, info)
         self.totalCourts = 5
