@@ -26,10 +26,10 @@ if __name__ == '__main__':
     pwd = input("Password : ")
     personalInfo = PersonalInfo(account, pwd)
     centers.append(JhongJhengSportsCenter(time1, personalInfo))
-    centers.append(YongHeSportsCenter(time1, personalInfo))
+    # centers.append(YongHeSportsCenter(time1, personalInfo))
     centers.append(BanQiaoSportsCenter(time2, personalInfo))
-    centers.append(NanGangSportsCenter(time1, personalInfo))
-    centers.append(DaAnSportsCenter(time1, personalInfo))
+    # centers.append(NanGangSportsCenter(time1, personalInfo))
+    # centers.append(DaAnSportsCenter(time1, personalInfo))
     # centers.append(LinKouSportsCenter(time1, personalInfo))
     # centers.append(ZhugUangSportsCenter(time2, personalInfo))
     for center in centers:

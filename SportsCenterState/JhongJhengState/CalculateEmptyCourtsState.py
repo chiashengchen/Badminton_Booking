@@ -25,7 +25,11 @@ class CalculateEmptyCourtsState(State):
         for time in range(startTime, endTime):
             courts = []
             for i in range(center.totalCourts) :
-                if "alert" in center.driver.find_element(By.XPATH, '//tbody/tr[' + str(2 + time * center.totalCourts + i) + ']/td[4]/img[1]').get_attribute("onclick"):
+                if i == 0:
+                    td = 4
+                else :
+                    td = 3
+                if "alert" in center.driver.find_element(By.XPATH, '//tbody/tr[' + str(2 + time * center.totalCourts + i) + ']/td[' + str(td) + ']/img[1]').get_attribute("onclick"):
                     continue
                 courts.append('//tbody/tr[' + str(2 + time * center.totalCourts + i) + ']/td[4]/img[1]')
             if len(courts) >= center.time.court:
