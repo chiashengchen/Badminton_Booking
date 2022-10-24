@@ -21,9 +21,8 @@ class PickCourtState(State):
         if center.orderNum == center.time.hours:
             center.setState(EndState)
         else:
-            # //*[@id="ContentPlaceHolder1_Step3Info_lab"]/span[2]/a[1]
             center.driver.find_element(By.XPATH, '//*[@id="ContentPlaceHolder1_Step3Info_lab"]/span[2]/a[1]').click()
             center.setState(Main.MainPageState())
+        # TODO : Error state, booking fail. Go back to main page
+        # /html/body/table[1]/tbody/tr[1]/td/table/tbody/tr/td/a[1]/span
         center.handle()
-
-        # //*[@id="ContentPlaceHolder1_Step3Info_lab"]/span[2]/a[1]
