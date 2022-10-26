@@ -22,19 +22,21 @@ if __name__ == '__main__':
     month = input("Booking month for Ban Qiao : ")
     day = input("Booking day for Ban Qiao : ")
     time2 = ScheduledTime(year, month, day, startTime, endTime, int(hours), int(courts))
-    account = input("Account : ")
-    pwd = input("Password : ")
+    account = 'A131757866'
+    pwd = 'qasx123'
     personalInfo = PersonalInfo(account, pwd)
     # centers.append(ZhugUangSportsCenter(time2, personalInfo))
 
     centers.append(BanQiaoSportsCenter(time2, personalInfo))
-    # centers.append(JhongJhengSportsCenter(time1, personalInfo))
+    centers.append(JhongJhengSportsCenter(time1, personalInfo))
     # centers.append(YongHeSportsCenter(time1, personalInfo))
     
-    # centers.append(NanGangSportsCenter(time1, personalInfo))
-    # centers.append(DaAnSportsCenter(time1, personalInfo))
+    centers.append(NanGangSportsCenter(time1, personalInfo))
+    centers.append(DaAnSportsCenter(time1, personalInfo))
     # centers.append(LinKouSportsCenter(time1, personalInfo))
     # tmp_center = ZhugUangSportsCenter(time2, personalInfo)
     # tmp_center.handle()
+    # account : A131757866
+    # pwd : qasx123
     for center in centers:
         center.start()

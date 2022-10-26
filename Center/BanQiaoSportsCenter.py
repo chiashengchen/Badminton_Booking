@@ -3,15 +3,20 @@ from SportsCenterState.BanQiaoState.LoginState import LoginState
 from Center.SportsCenter import SportsCenter
 import SportsCenterState.BanQiaoState.EndState as End
 from selenium.common.exceptions import WebDriverException
+from selenium.webdriver.chrome.options import Options
 class BanQiaoSportsCenter(SportsCenter):
     def __init__(self, time, info):
         SportsCenter.__init__(self, time, info)
         self.totalCourts = 6
-        self.driver = webdriver.Chrome('./chromedriver')
+        opts = Options()
+        opts.add_argument("--incognito")  
+        ua = "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0"
+        opts.add_argument("user-agent={}".format(ua))  
+        self.driver = webdriver.Chrome(executable_path='./chromedriver',chrome_options=opts)
+        
         try :
             self.driver.get('https://www.cjcf.com.tw/CG01.aspx?module=login_page&files=login&PT=1')
-            self.state = LoginState() 
-            self.mockError()
+            self.state = LoginState()
         except :
             print("error: cannot load page")
             self.state = End.EndState()
@@ -19,5 +24,3 @@ class BanQiaoSportsCenter(SportsCenter):
     def run(self):
         self.state.handle(self)
 
-    def mockError(self):
-        raise WebDriverException
