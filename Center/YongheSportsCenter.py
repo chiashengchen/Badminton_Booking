@@ -17,7 +17,7 @@ class YongHeSportsCenter(SportsCenter):
             self.driver.get('https://scr.cyc.org.tw/tp10.aspx?module=login_page&files=login&PT=1')
             self.state = LoginState()
         except:
-            print("error")
+            print("error: cannot load page")
             self.state = End.EndState()
     
     def run(self):
