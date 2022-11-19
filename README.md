@@ -1,6 +1,6 @@
 # Badminton Autobrooking System
 >reference : 
->[tutorial](https://tonidata.medium.com/%E8%87%AA%E5%8B%95%E6%90%B6%E7%A5%A8%E7%A8%8B%E5%BC%8F-%E7%94%A8python%E6%90%B6%E7%86%B1%E8%B3%A3%E5%95%86%E5%93%81-1f542f50c395)、[XPATH](https://www.guru99.com/xpath-selenium.html)、[multithreading_1](https://www.maxlist.xyz/2020/03/15/python-threading/)、[multithreading_2](https://blog.gtwang.org/programming/python-threading-multithreaded-programming-tutorial/)、[selenium_1](https://www.learncodewithmike.com/2020/05/python-selenium-scraper.html)、[selenium_2](https://ithelp.ithome.com.tw/articles/10230717)、[selenium wait for page load](https://www.lambdatest.com/blog/selenium-wait-for-page-to-load/)
+>[tutorial](https://tonidata.medium.com/%E8%87%AA%E5%8B%95%E6%90%B6%E7%A5%A8%E7%A8%8B%E5%BC%8F-%E7%94%A8python%E6%90%B6%E7%86%B1%E8%B3%A3%E5%95%86%E5%93%81-1f542f50c395)、[XPATH](https://www.guru99.com/xpath-selenium.html)、[multithreading_1](https://www.maxlist.xyz/2020/03/15/python-threading/)、[multithreading_2](https://blog.gtwang.org/programming/python-threading-multithreaded-programming-tutorial/)、[selenium_1](https://www.learncodewithmike.com/2020/05/python-selenium-scraper.html)、[selenium_2](https://ithelp.ithome.com.tw/articles/10230717)、[selenium wait for page load](https://www.lambdatest.com/blog/selenium-wait-for-page-to-load/)、[lambda](https://www.learncodewithmike.com/2019/12/python-lambda-functions.html)、[type checking in python](https://medium.com/@ageitgey/learn-how-to-use-static-type-checking-in-python-3-6-in-10-minutes-12c86d72677b)、[circular import](https://stackoverflow.com/questions/5748946/pythonic-way-to-resolve-circular-import-statements)、[快速入門 selenium](https://selenium-python-zh.readthedocs.io/en/latest/getting-started.html)、[selenium 偽造身份進行網路爬蟲](https://hardliver.blogspot.com/2018/04/selenium.html)
 ## Pre-setting
 
 - [Chromedriver 要與電腦的 Chrome 版本相同](https://chromedriver.chromium.org/downloads)
@@ -34,3 +34,5 @@
 2. Sports center init 各 state (code 重複利用)
 3. Center 增加可讀性 -> 切出 time 跟 info (多對多)
 4. ScheduledTime -> Appointment
+5. 一個電腦可以開兩個帳號搶嗎?
+6. Add court class
