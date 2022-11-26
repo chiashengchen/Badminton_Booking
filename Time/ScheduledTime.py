@@ -1,6 +1,5 @@
 from prometheus_client import Enum
 
-
 class DayPeriods(Enum):
     MORNING = 0
     AFTERNOON = 1
@@ -16,33 +15,39 @@ class ScheduledTime:
     court : int
     
     def __init__(self, year, month, day, startTime, endTime, hours, court):
-        self.year = year
-        self.month = month
-        self.day = day
-        self.startTime = int(startTime)
-        self.endTime = int(endTime)
-        self.hours = int(hours)
-        self.court = int(court)
-        if self.endTime <= self.startTime:
+        self._year = int(year)
+        self._month = int(month)
+        self._day = int(day)
+        self._startTime = int(startTime)
+        self._endTime = int(endTime)
+        self._hours = int(hours)
+        self._court = int(court)
+        if self._endTime <= self._startTime:
             raise BaseException("Error")
 
     def getScheduledDate(self):
-        if len(self.day) < 2:
-            brookingDay = str(self.year) + '/'+ str(self.month) + '/0' + str(self.day)
+        if self._day < 10:
+            brookingDay = str(self._year) + '/'+ str(self._month) + '/0' + str(self._day)
         else:
-            brookingDay = str(self.year) + '/'+ str(self.month) + '/' + str(self.day)
+            brookingDay = str(self._year) + '/'+ str(self._month) + '/' + str(self._day)
         return brookingDay
 
     def getCalendarDayPeriods(self):
-        if self.startTime >= 18:
+        if self._startTime >= 18:
             return 2
-        elif self.startTime >= 12:
+        elif self._startTime >= 12:
             return 1
         else:
             return 0
 
     def getStartTime(self):
-        return self.startTime - (6 + 6 * self.getCalendarDayPeriods())
+        return self._startTime
 
     def getEndTime(self):
-        return self.endTime - (6 + 6 * self.getCalendarDayPeriods())
+        return self._endTime
+
+    def getOrderCourts(self):
+        return self._court
+    
+    def getOrderTime(self):
+        return self._hours

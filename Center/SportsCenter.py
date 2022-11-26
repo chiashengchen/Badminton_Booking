@@ -2,35 +2,46 @@ import threading
 from Time.ScheduledTime import ScheduledTime
 from Info.PersonalInfo import PersonalInfo
 from SportsCenterState.State import State
-class SportsCenter(threading.Thread):
+class SportsCenter:
     time : ScheduledTime
     info : PersonalInfo
-    # driver : webdriver
     totalCourts : int
     state : State
-    # emptyCourts : array
     targetTime : int
     orderNum : int
     appiontmentInterval : int
 
-    def __init__(self, time, info):
-        threading.Thread.__init__(self)
-        self.time = time
-        self.info = info
-        self.targetTime = -1
-        self.orderNum = 0
-        self.emptyCourts = None
+    def __init__(self, time):
+        self._time = time
+        self._targetTime = -1
+        self._orderNum = 0
+        self._targetCourts = []
+        self._emptyCourts = []
+        self._isCount = False
 
-    def setState(self, state) :
-        self.state = state
+    def getTime(self):
+        return self._time
 
-    def handle(self):
-        self.state.handle(self)
+    def setTargetTime(self, time):
+        self._targetTime = time
+    
+    def setTargetCourts(self, courts):
+        self._targetCourts = courts
+    
+    def getTargetCourts(self):
+        return self._targetCourts
+    
+    def getEmptyCourts(self):
+        return self._emptyCourts
 
-    # thread start function
-    def run(self):
-        raise NotImplementedError("Not implement method yet !")
+    def setEmptyCourts(self, courts):
+        self._emptyCourts = courts
 
-    def fakeRun(self):
-        raise NotImplementedError("Not implement method yet !")
-        
+    def getURL(self):
+        return self._url
+    
+    def isCount(self):
+        return self._isCount
+    
+    def setCount(self, bool):
+        self._isCount = bool

@@ -1,4 +1,4 @@
 
 class State :
-    def handle(self, center):
+    def handle(self, content):
         raise NotImplementedError("Not implement method yet !")
