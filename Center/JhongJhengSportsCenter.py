@@ -1,8 +1,4 @@
-from selenium import webdriver
-from SportsCenterState.JhongJhengState.LoginState import LoginState
 from Center.SportsCenter import SportsCenter
-import SportsCenterState.JhongJhengState.EndState as End
-from selenium.webdriver.chrome.options import Options
 import Time.ScheduledTime as Time
 from Court.Court import Court
 class JhongJhengSportsCenter(SportsCenter):
