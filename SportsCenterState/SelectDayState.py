@@ -1,7 +1,6 @@
 from SportsCenterState.State import State
 from selenium.webdriver.common.by import By
 from SportsCenterState.CalculateEmptyCourtsState import CalculateEmptyCourtsState
-from SportsCenterState.SelectPeriod import SelectPeriod
 from selenium.common.exceptions import NoSuchElementException
 import time
 import Content.Content as Content

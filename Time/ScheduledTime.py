@@ -22,7 +22,7 @@ class ScheduledTime:
         self._endTime = int(endTime)
         self._hours = int(hours)
         self._court = int(court)
-        if self._endTime <= self._startTime:
+        if self._endTime <= self._startTime or self._startTime <= 6 or self._endTime >= 23:
             raise BaseException("Error")
 
     def getScheduledDate(self):
