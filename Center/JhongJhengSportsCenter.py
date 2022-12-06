@@ -7,6 +7,7 @@ class JhongJhengSportsCenter(SportsCenter):
         self._url = 'https://www.cjcf.com.tw/jj01.aspx?module=login_page&files=login&PT=1'
         self._totalCourts = 5
         self._emptyCourts = self.initEmptyCourts(time)
+        self._bookingGap = 14
 
     def initEmptyCourts(self, appointment : Time.ScheduledTime):
         emptyCourts = []

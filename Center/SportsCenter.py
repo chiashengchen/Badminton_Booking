@@ -1,15 +1,15 @@
-import threading
+import datetime
 from Time.ScheduledTime import ScheduledTime
 from Info.PersonalInfo import PersonalInfo
 from SportsCenterState.State import State
 class SportsCenter:
-    time : ScheduledTime
+    _time : ScheduledTime
     info : PersonalInfo
-    totalCourts : int
+    _totalCourts : int
     state : State
-    targetTime : int
-    orderNum : int
-    appiontmentInterval : int
+    _targetTime : int
+    _orderNum : int
+    _appiontmentInterval : int
 
     def __init__(self, time):
         self._time = time
@@ -45,3 +45,23 @@ class SportsCenter:
     
     def setCount(self, bool):
         self._isCount = bool
+
+    def isDateAvailable(self):
+        now = datetime.datetime.now()
+        appointment = self._time.getScheduledDate()
+        target = datetime.datetime.strptime(appointment, "%Y/%m/%d")
+        delta = target - now
+        if(delta.days < 0 or delta.days >= (self._bookingGap - 1)):
+            return 0
+        else :
+            return 1
+        
+    def isWithin30Sec(self):
+        now = datetime.datetime.now()
+        appointment = self._time.getScheduledDate()
+        target = datetime.datetime.strptime(appointment, "%Y/%m/%d")
+        delta = target - now
+        if(delta.days == (self._bookingGap - 1) and delta.seconds < 30):
+            return 1
+        else :
+            return 0

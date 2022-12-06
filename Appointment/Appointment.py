@@ -6,6 +6,7 @@ class Appointment :
     def __init__(self, time, infos, type):
         lock = threading.Lock()
         center, state = CenterFactory.createCenter(time, type)
+        
         self._contents = []
         for info in infos:
             content = Content(center, info, state, time, lock)
