@@ -15,16 +15,15 @@ class SelectDayState(State):
             driver.find_element(By.XPATH, '//*[@onclick=\"GoToStep2(\'' + content.getTime().getScheduledDate() + '\',1)\"]').click()
             content.setState(CalculateEmptyCourtsState())
         except NoSuchElementException:
-            # TODO 那天的場已經訂滿了
-            print("error and refresh")
             if(center.isDateAvailable()):
+                print("Not available")
                 content.setState(End.EndState())
             else:
                 while(not center.isWithin30Sec()):
-                    print("waiting")
+                    print("Waiting")
                     time.sleep(30)
                     pass
-                time.sleep(10)
+                time.sleep(5)
                 driver.refresh()
                 content.setState(SelectDayState())
         content.handle()

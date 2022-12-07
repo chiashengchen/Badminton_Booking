@@ -61,6 +61,7 @@ class SportsCenter:
         appointment = self._time.getScheduledDate()
         target = datetime.datetime.strptime(appointment, "%Y/%m/%d")
         delta = target - now
+        print(str(delta.seconds) + " seconds left")
         if(delta.days == (self._bookingGap - 1) and delta.seconds < 30):
             return 1
         else :
