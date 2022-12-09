@@ -57,7 +57,3 @@ class CalculateEmptyCourtsState(State):
             driver.find_element(By.XPATH, '//tbody/tr[2]/td[1]/span[1]/div[2]').click()
         else : 
             driver.find_element(By.XPATH, '//tbody/tr[2]/td[1]/span[1]/div[1]').click()
-
-    
-   
-
