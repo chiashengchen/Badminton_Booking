@@ -24,7 +24,7 @@ class PickCourtState(State):
         if not targetCourts:
             content.setState(EndState())
         else:
-            driver.find_element(By.XPATH, '//*[@id="ContentPlaceHolder1_Step3Info_lab"]/span[2]/a[1]').click()
+            driver.find_element(By.XPATH, '//*[@id=\"ContentPlaceHolder1_Step3Info_lab\"]/span[2]/a[1]').click()
             content.setState(Main.MainPageState())
         # TODO : Error state, booking fail. Go back to main page
         content.handle()
