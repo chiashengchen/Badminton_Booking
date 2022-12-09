@@ -14,7 +14,7 @@ class Content(threading.Thread):
         self._state = state
         self._lock = lock
         self._time = time
-        self._driver = self.initDriver(center.getURL())
+        self._driver = None
 
     def initDriver(self, url):
         opts = Options()
@@ -26,7 +26,7 @@ class Content(threading.Thread):
             driver.get(url)
         except :
             print("error: cannot load page")
-        return driver
+        self._driver = driver
 
     def getDriver(self):
         return self._driver
@@ -35,6 +35,7 @@ class Content(threading.Thread):
         self._state.handle(self)
 
     def run(self):
+        self.initDriver(self._center.getURL())
         self._state.handle(self)
 
     def getCenter(self):
