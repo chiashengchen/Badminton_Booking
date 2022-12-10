@@ -14,8 +14,9 @@ class PickCourtState(State):
         lock.acquire()
         targetCourts = content.getCenter().getTargetCourts()
         for court in targetCourts:
-            if "alert" in driver.find_element(By.XPATH, court.getXPath()).get_attribute("onclick"):
-                continue
+            self.selectPeriod(driver, court.getTime())
+            # if "alert" in driver.find_element(By.XPATH, court.getXPath()).get_attribute("onclick"):
+            #     continue
             driver.find_element(By.XPATH, court.getXPath()).click()
             targetCourts.remove(court)
             alert.accept()
@@ -28,3 +29,11 @@ class PickCourtState(State):
             content.setState(Main.MainPageState())
         # TODO : Error state, booking fail. Go back to main page
         content.handle()
+
+    def selectPeriod(self, driver, period):
+        if period >= 18:
+            driver.find_element(By.XPATH, '//tbody/tr[2]/td[1]/span[1]/div[3]').click()
+        elif period >= 12:
+            driver.find_element(By.XPATH, '//tbody/tr[2]/td[1]/span[1]/div[2]').click()
+        else : 
+            driver.find_element(By.XPATH, '//tbody/tr[2]/td[1]/span[1]/div[1]').click()

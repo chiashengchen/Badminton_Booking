@@ -31,11 +31,11 @@ if __name__ == '__main__':
     infos = []
     infos.append(PersonalInfo(account1, pwd1))
     infos.append(PersonalInfo(account2, pwd2))
-    appointments.append(Appointment(time2, infos, 'BanQiao'))
-    appointments.append(Appointment(time1, infos, 'DaAn'))
-    appointments.append(Appointment(time1, infos, 'JhongJheng'))
+    # appointments.append(Appointment(time2, infos, 'BanQiao'))
+    # appointments.append(Appointment(time1, infos, 'DaAn'))
+    # appointments.append(Appointment(time1, infos, 'JhongJheng'))
     appointments.append(Appointment(time1, infos, 'LinKou'))
-    appointments.append(Appointment(time1, infos, 'NanGang'))
+    # appointments.append(Appointment(time1, infos, 'NanGang'))
     # appointments.append(Appointment(time1, infos, 'YongHe'))
     # appointments.append(Appointment(time2, infos, 'ZhugUang'))    
 
