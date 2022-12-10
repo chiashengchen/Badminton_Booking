@@ -9,11 +9,13 @@ class CalculateEmptyCourtsState(State):
     # TODO : calculate continuous time courts
     def handle(self, content : Content.Content):
         content.getLock().acquire()
+        print("enter lock")
         if not content.getCenter().isCount():
             content.getCenter().setCount(True)   
             self.checkAvailableCourt(content)
             self.pickTargetCourt(content)
         content.getLock().release()
+        print("release lock")
         if content.getCenter().getTargetCourts():
             content.setState(PickCourtState())
         else :
@@ -28,22 +30,27 @@ class CalculateEmptyCourtsState(State):
             self.selectPeriod(driver, courts[0].getTime())
             length = len(courts)
             for i in range(length - 1, -1, -1):
+                print("Current court number = " + str(i))
                 if "alert" in driver.find_element(By.XPATH, courts[i].getXPath()).get_attribute("onclick"):
                     courts.pop(i)
 
     def pickTargetCourt(self, content : Content.Content):
         needCourt = content.getTime().getOrderCourts()
+        print("need count = " + str(needCourt))
         needTime = content.getTime().getOrderTime()
+        print("need time = " + str(needTime))
         emptyCourts = content.getCenter().getEmptyCourts()
         targetCourts = content.getCenter().getTargetCourts()
         length = len(emptyCourts)
-        continueCount = needTime
+        continueTime = needTime
         for i in range(length):
             if len(emptyCourts[i]) >= needCourt:
-                continueCount -= 1
+                continueTime -= 1
             else :
-                continueCount = needCourt
-            if continueCount == 0:
+                continueTime = needTime
+            print("current continue count = " + str(continueTime))
+            if continueTime == 0:
+                print("start time = " + str(i - needTime + 1) + ", end time = " + str(i + 1))
                 for j in range(i - needTime + 1, i + 1):
                     for k in range(needCourt):
                         targetCourts.append(emptyCourts[j].pop())

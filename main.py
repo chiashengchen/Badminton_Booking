@@ -17,8 +17,8 @@ if __name__ == '__main__':
     day2 = 17
     month1 = 12
     day1 = 24
-    startTime = 19
-    endTime = 22
+    startTime = 13
+    endTime = 20
     hours = 2
     courts = 1
 
@@ -34,7 +34,7 @@ if __name__ == '__main__':
     appointments.append(Appointment(time2, infos, 'BanQiao'))
     appointments.append(Appointment(time1, infos, 'DaAn'))
     appointments.append(Appointment(time1, infos, 'JhongJheng'))
-    # appointments.append(Appointment(time1, infos, 'LinKou'))
+    appointments.append(Appointment(time1, infos, 'LinKou'))
     appointments.append(Appointment(time1, infos, 'NanGang'))
     # appointments.append(Appointment(time1, infos, 'YongHe'))
     # appointments.append(Appointment(time2, infos, 'ZhugUang'))    
