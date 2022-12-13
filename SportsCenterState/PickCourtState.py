@@ -15,9 +15,12 @@ class PickCourtState(State):
         targetCourts = content.getCenter().getTargetCourts()
         for court in targetCourts:
             self.selectPeriod(driver, court.getTime())
-            # if "alert" in driver.find_element(By.XPATH, court.getXPath()).get_attribute("onclick"):
-            #     continue
+            if "alert" in driver.find_element(By.XPATH, court.getXPath()).get_attribute("onclick"):
+                print("[EMPTY COURT TIME AT " + str(court.getTime()) + " ]")
+                targetCourts.remove(court)
+                continue
             driver.find_element(By.XPATH, court.getXPath()).click()
+            tmpCourt = court
             targetCourts.remove(court)
             alert.accept()
             break
@@ -25,9 +28,12 @@ class PickCourtState(State):
         if not targetCourts:
             content.setState(EndState())
         else:
-            driver.find_element(By.XPATH, '//*[@id=\"ContentPlaceHolder1_Step3Info_lab\"]/span[2]/a[1]').click()
-            content.setState(Main.MainPageState())
-        # TODO : Error state, booking fail. Go back to main page
+            try:
+                driver.find_element(By.XPATH, '//*[@id=\"ContentPlaceHolder1_Step3Info_lab\"]/span[2]/a[1]').click()
+            except:
+                print("[ORDERING ERROR]")
+                driver.find_element(By.XPATH, '/html/body/table[1]/tbody/tr[1]/td/table/tbody/tr/td/a[1]/span').click()
+                targetCourts.append(tmpCourt)
         content.handle()
 
     def selectPeriod(self, driver, period):

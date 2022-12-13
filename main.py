@@ -14,16 +14,16 @@ if __name__ == '__main__':
     # hours = input("How much time did you want to play ? ")
     # courts = input("How many courts did you want to order ? ")
     month2 = 12
-    day2 = 17
+    day2 = 20
     month1 = 12
-    day1 = 24
-    startTime = 13
-    endTime = 20
+    day1 = 27
+    startTime = 6
+    endTime = 12
     hours = 2
     courts = 1
 
-    time2 = ScheduledTime(year, month2, day2, startTime, endTime, int(hours), int(courts))
-    time1 = ScheduledTime(year, month1, day1, startTime, endTime, int(hours), int(courts))
+    time2week = ScheduledTime(year, month2, day2, startTime, endTime, int(hours), int(courts))
+    time1week = ScheduledTime(year, month1, day1, startTime, endTime, int(hours), int(courts))
     account1 = 'A131757866'
     pwd1 = 'qasx123'
     account2 = 'A123456789'
@@ -31,13 +31,13 @@ if __name__ == '__main__':
     infos = []
     infos.append(PersonalInfo(account1, pwd1))
     infos.append(PersonalInfo(account2, pwd2))
-    # appointments.append(Appointment(time2, infos, 'BanQiao'))
-    # appointments.append(Appointment(time1, infos, 'DaAn'))
-    # appointments.append(Appointment(time1, infos, 'JhongJheng'))
-    appointments.append(Appointment(time1, infos, 'LinKou'))
-    # appointments.append(Appointment(time1, infos, 'NanGang'))
-    # appointments.append(Appointment(time1, infos, 'YongHe'))
-    # appointments.append(Appointment(time2, infos, 'ZhugUang'))    
+    appointments.append(Appointment(time2week, infos, 'BanQiao'))
+    # appointments.append(Appointment(time1week, infos, 'DaAn'))
+    # appointments.append(Appointment(time1week, infos, 'JhongJheng'))
+    # appointments.append(Appointment(time1week, infos, 'LinKou'))
+    # appointments.append(Appointment(time1week, infos, 'NanGang'))
+    # appointments.append(Appointment(time1week, infos, 'YongHe'))
+    # appointments.append(Appointment(time2week, infos, 'ZhugUang'))    
 
     # account : A131757866
     # pwd : qasx123
