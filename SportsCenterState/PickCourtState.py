@@ -30,6 +30,7 @@ class PickCourtState(State):
         else:
             try:
                 driver.find_element(By.XPATH, '//*[@id=\"ContentPlaceHolder1_Step3Info_lab\"]/span[2]/a[1]').click()
+                print("[PICK] Pick court " + str(tmpCourt.getTime()))
             except:
                 print("[ORDERING ERROR]")
                 driver.find_element(By.XPATH, '/html/body/table[1]/tbody/tr[1]/td/table/tbody/tr/td/a[1]/span').click()
