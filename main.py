@@ -14,9 +14,9 @@ if __name__ == '__main__':
     # hours = input("How much time did you want to play ? ")
     # courts = input("How many courts did you want to order ? ")
     month2 = 12
-    day2 = 20
+    day2 = 21
     month1 = 12
-    day1 = 27
+    day1 = 28
     startTime = 6
     endTime = 12
     hours = 2

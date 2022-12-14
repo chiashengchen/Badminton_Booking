@@ -16,14 +16,14 @@ class SelectDayState(State):
             content.setState(CalculateEmptyCourtsState())
         except NoSuchElementException:
             if(center.isDateAvailable()):
-                print("Not available")
+                print("[NOT AVAILABLE]")
                 content.setState(End.EndState())
             else:
-                while(not center.isWithin30Sec()):
-                    print("Waiting")
-                    time.sleep(30)
+                while(not center.isWithinSec(10)):
+                    print("[WAITING]")
+                    time.sleep(10)
                     pass
-                time.sleep(5)
+                time.sleep(2)
                 driver.refresh()
                 content.setState(SelectDayState())
         content.handle()
