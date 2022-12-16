@@ -16,7 +16,7 @@ class SelectDayState(State):
             content.setState(CalculateEmptyCourtsState())
         except NoSuchElementException:
             if(center.isDateAvailable()):
-                print("[NOT AVAILABLE]")
+                print("[NOT AVAILABLE IN " + center.getName() +"]")
                 content.setState(End.EndState())
             else:
                 while(not center.isWithinSec(10)):

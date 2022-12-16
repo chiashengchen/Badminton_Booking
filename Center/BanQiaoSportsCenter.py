@@ -5,6 +5,7 @@ import Time.ScheduledTime as Time
 class BanQiaoSportsCenter(SportsCenter):
     def __init__(self, time : Time.ScheduledTime):
         SportsCenter.__init__(self, time)
+        self._name = 'BanQiao'
         self._url = 'https://www.cjcf.com.tw/CG01.aspx?module=login_page&files=login&PT=1'
         self._totalCourts = 6
         self._emptyCourts = self.initEmptyCourts(time)

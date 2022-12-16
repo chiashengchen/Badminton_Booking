@@ -49,7 +49,9 @@ class SportsCenter:
     def isDateAvailable(self):
         now = datetime.datetime.now()
         appointment = self._time.getScheduledDate()
-        target = datetime.datetime.strptime(appointment, "%Y/%m/%d")
+        # 假如 date 不能點，但其實是沒出現。給 30 秒的 buffer
+        appointment = appointment + '/10'
+        target = datetime.datetime.strptime(appointment, "%Y/%m/%d/%S")
         delta = target - now
         if(delta.days < 0 or delta.days >= (self._bookingGap - 1)):
             return 0
@@ -66,3 +68,6 @@ class SportsCenter:
             return 1
         else :
             return 0
+
+    def getName(self):
+        return self._name

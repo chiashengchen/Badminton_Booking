@@ -4,6 +4,7 @@ from Court.Court import Court
 class LinKouSportsCenter(SportsCenter):
     def __init__(self, time : Time.ScheduledTime):
         SportsCenter.__init__(self, time)
+        self._name = 'LinKou'
         self._url = 'https://scr.cyc.org.tw/tp17.aspx?module=login_page&files=login&PT=1'
         self._totalCourts = 4
         self._emptyCourts = self.initEmptyCourts(time)

@@ -14,11 +14,11 @@ if __name__ == '__main__':
     # hours = input("How much time did you want to play ? ")
     # courts = input("How many courts did you want to order ? ")
     month2 = 12
-    day2 = 21
+    day2 = 23
     month1 = 12
-    day1 = 28
-    startTime = 19
-    endTime = 22
+    day1 = 30
+    startTime = 11
+    endTime = 15
     hours = 2
     courts = 1
 
@@ -32,8 +32,8 @@ if __name__ == '__main__':
     infos.append(PersonalInfo(account1, pwd1))
     infos.append(PersonalInfo(account2, pwd2))
     appointments.append(Appointment(time2week, infos, 'BanQiao'))
-    appointments.append(Appointment(time1week, infos, 'DaAn'))
-    appointments.append(Appointment(time1week, infos, 'JhongJheng'))
+    # appointments.append(Appointment(time1week, infos, 'DaAn'))
+    # appointments.append(Appointment(time1week, infos, 'JhongJheng'))
     # appointments.append(Appointment(time1week, infos, 'LinKou'))
     # appointments.append(Appointment(time1week, infos, 'NanGang'))
     # appointments.append(Appointment(time1week, infos, 'YongHe'))
