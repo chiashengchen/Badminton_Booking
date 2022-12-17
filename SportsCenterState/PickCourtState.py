@@ -35,6 +35,7 @@ class PickCourtState(State):
                 print("[ORDERING ERROR]")
                 driver.find_element(By.XPATH, '/html/body/table[1]/tbody/tr[1]/td/table/tbody/tr/td/a[1]/span').click()
                 targetCourts.append(tmpCourt)
+            content.setState(Main.MainPageState())
         content.handle()
 
     def selectPeriod(self, driver, period):
