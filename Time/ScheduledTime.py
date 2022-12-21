@@ -23,16 +23,22 @@ class ScheduledTime:
         self._endTime = int(endTime)
         self._hours = int(hours)
         self._court = int(court)
+        self._bufferTime = 30
         if self._endTime <= self._startTime or self._startTime < 6 or self._endTime >= 23:
             raise BaseException("Time Invalid Error")
         if not self.isVaildDate():
             raise BaseException("Date Invalid Error")
 
     def getScheduledDate(self):
-        if self._day < 10:
-            brookingDay = str(self._year) + '/'+ str(self._month) + '/0' + str(self._day)
+        if self._month < 10:
+            brookingDay = str(self._year) + '/0'+ str(self._month)
         else:
-            brookingDay = str(self._year) + '/'+ str(self._month) + '/' + str(self._day)
+            brookingDay = str(self._year) + '/'+ str(self._month)
+        if self._day < 10:
+            brookingDay = brookingDay + '/0' + str(self._day)
+        else:
+            brookingDay = brookingDay + '/' + str(self._day)
+        brookingDay = brookingDay + '/' + str(self._bufferTime)
         return brookingDay
 
     def getCalendarDayPeriods(self):
@@ -57,7 +63,7 @@ class ScheduledTime:
 
     def isVaildDate(self):
         now = datetime.datetime.now()
-        target = datetime.datetime.strptime(self.getScheduledDate(), "%Y/%m/%d")
+        target = datetime.datetime.strptime(self.getScheduledDate(), "%Y/%m/%d/%S")
         delta = target - now
         if(delta.days < 0):
             return 0
