@@ -48,7 +48,7 @@ class SportsCenter:
 
     def isDateAvailable(self):
         now = datetime.datetime.now()
-        appointment = self._time.getScheduledDate()
+        appointment = self._time.getScheduledDateWithBuffer()
         # 假如 date 不能點，但其實是沒出現。給 30 秒的 buffer
         target = datetime.datetime.strptime(appointment, "%Y/%m/%d/%S")
         # target = datetime.datetime.strptime(appointment, "%Y/%m/%d")
@@ -60,7 +60,7 @@ class SportsCenter:
         
     def isWithinSec(self, sec : int):
         now = datetime.datetime.now()
-        appointment = self._time.getScheduledDate()
+        appointment = self._time.getScheduledDateWithBuffer()
         target = datetime.datetime.strptime(appointment, "%Y/%m/%d/%S")
         delta = target - now
         print(str(delta.seconds) + " seconds left")

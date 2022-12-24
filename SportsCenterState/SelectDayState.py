@@ -11,7 +11,6 @@ class SelectDayState(State):
         driver = content.getDriver()
         center = content.getCenter()
         try:
-            # center.driver.find_element(By.XPATH, '//td[contains(text(),\''+ str(center.time.day) + '\')]').click()
             driver.find_element(By.XPATH, '//*[@onclick=\"GoToStep2(\'' + content.getTime().getScheduledDate() + '\',1)\"]').click()
             content.setState(CalculateEmptyCourtsState())
         except NoSuchElementException:

@@ -31,15 +31,19 @@ class ScheduledTime:
 
     def getScheduledDate(self):
         if self._month < 10:
-            brookingDay = str(self._year) + '/0'+ str(self._month)
+            orderDay = str(self._year) + '/0'+ str(self._month)
         else:
-            brookingDay = str(self._year) + '/'+ str(self._month)
+            orderDay = str(self._year) + '/'+ str(self._month)
         if self._day < 10:
-            brookingDay = brookingDay + '/0' + str(self._day)
+            orderDay = orderDay + '/0' + str(self._day)
         else:
-            brookingDay = brookingDay + '/' + str(self._day)
-        brookingDay = brookingDay + '/' + str(self._bufferTime)
-        return brookingDay
+            orderDay = orderDay + '/' + str(self._day)
+        return orderDay
+
+    def getScheduledDateWithBuffer(self):
+        orderDay = self.getScheduledDate()
+        orderDay = orderDay + '/' + str(self._bufferTime)
+        return orderDay
 
     def getCalendarDayPeriods(self):
         if self._startTime >= 18:
