@@ -23,7 +23,7 @@ class ScheduledTime:
         self._endTime = int(endTime)
         self._hours = int(hours)
         self._court = int(court)
-        self._bufferTime = 30
+        self._bufferTime = 10
         if self._endTime <= self._startTime or self._startTime < 6 or self._endTime >= 23:
             raise BaseException("Time Invalid Error")
         if not self.isVaildDate():
