@@ -18,8 +18,8 @@ if __name__ == '__main__':
     day2 = 7
     month1 = 12
     day1 = 31
-    startTime = 19
-    endTime = 22
+    startTime = 13
+    endTime = 18
     hours = 2
     courts = 1
 
@@ -32,10 +32,10 @@ if __name__ == '__main__':
     infos = []
     infos.append(PersonalInfo(account1, pwd1))
     infos.append(PersonalInfo(account2, pwd2))
-    appointments.append(Appointment(time1week, infos, 'BanQiao'))
-    appointments.append(Appointment(time2week, infos, 'DaAn'))
+    # appointments.append(Appointment(time1week, infos, 'BanQiao'))
+    # appointments.append(Appointment(time2week, infos, 'DaAn'))
     # appointments.append(Appointment(time2week, infos, 'JhongJheng'))
-    # appointments.append(Appointment(time2week, infos, 'LinKou'))
+    appointments.append(Appointment(time2week, infos, 'LinKou'))
     # appointments.append(Appointment(time2week, infos, 'NanGang'))
     # appointments.append(Appointment(time2week, infos, 'YongHe'))
     # appointments.append(Appointment(time1week, infos, 'ZhugUang'))    

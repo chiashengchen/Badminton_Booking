@@ -67,7 +67,7 @@ class ScheduledTime:
 
     def isVaildDate(self):
         now = datetime.datetime.now()
-        target = datetime.datetime.strptime(self.getScheduledDate(), "%Y/%m/%d/%S")
+        target = datetime.datetime.strptime(self.getScheduledDate(), "%Y/%m/%d")
         delta = target - now
         if(delta.days < 0):
             return 0

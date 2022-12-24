@@ -30,15 +30,12 @@ class CalculateEmptyCourtsState(State):
             self.selectPeriod(driver, courts[0].getTime())
             length = len(courts)
             for i in range(length - 1, -1, -1):
-                print("Current court number = " + str(i))
                 if "alert" in driver.find_element(By.XPATH, courts[i].getXPath()).get_attribute("onclick"):
                     courts.pop(i)
 
     def pickTargetCourt(self, content : Content.Content):
         needCourt = content.getTime().getOrderCourts()
-        print("need count = " + str(needCourt))
         needTime = content.getTime().getOrderTime()
-        print("need time = " + str(needTime))
         emptyCourts = content.getCenter().getEmptyCourts()
         targetCourts = content.getCenter().getTargetCourts()
         length = len(emptyCourts)
@@ -48,7 +45,6 @@ class CalculateEmptyCourtsState(State):
                 continueTime -= 1
             else :
                 continueTime = needTime
-            print("current continue count = " + str(continueTime))
             if continueTime == 0:
                 print("start time = " + str(i - needTime + 1) + ", end time = " + str(i + 1))
                 for j in range(i - needTime + 1, i + 1):
