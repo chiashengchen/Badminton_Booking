@@ -4,12 +4,11 @@ from Info.PersonalInfo import PersonalInfo
 from SportsCenterState.State import State
 class SportsCenter:
     _time : ScheduledTime
-    info : PersonalInfo
     _totalCourts : int
-    state : State
     _targetTime : int
     _orderNum : int
     _appiontmentInterval : int
+    _bookingGap : int
 
     def __init__(self, time):
         self._time = time
@@ -71,3 +70,6 @@ class SportsCenter:
 
     def getName(self):
         return self._name
+
+    def getBookingGap(self) :
+        return self._bookingGap

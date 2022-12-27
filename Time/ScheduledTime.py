@@ -7,13 +7,6 @@ class DayPeriods(Enum):
     EVENING = 2
 
 class ScheduledTime: 
-    year : int
-    month : int
-    day : int
-    startTime : int
-    endTime : int 
-    hours : int
-    court : int
     
     def __init__(self, year, month, day, startTime, endTime, hours, court):
         self._year = int(year)
@@ -23,8 +16,9 @@ class ScheduledTime:
         self._endTime = int(endTime)
         self._hours = int(hours)
         self._court = int(court)
+        self._prepareTime = 10
         self._bufferTime = 10
-        if self._endTime <= self._startTime or self._startTime < 6 or self._endTime >= 23:
+        if self._endTime <= self._startTime or self._startTime < 6 or self._endTime > 22:
             raise BaseException("Time Invalid Error")
         if not self.isVaildDate():
             raise BaseException("Date Invalid Error")
@@ -73,3 +67,9 @@ class ScheduledTime:
             return 0
         else :
             return 1
+
+    def getPrepareTime(self) :
+        return self._prepareTime
+    
+    def getBufferTime(self) :
+        return self._bufferTime
