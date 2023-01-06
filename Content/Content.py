@@ -57,14 +57,14 @@ class Content(threading.Thread):
     def isAfterPrepareTime(self):
         now = datetime.datetime.now()
         target = datetime.datetime.strptime(self._time.getScheduledDate(), "%Y/%m/%d")
-        shift = datetime.timedelta(days=self._center.getBookingGap())
+        shift = datetime.timedelta(days=self._center.getBookingGap() - 1)
         prepareTime = datetime.timedelta(seconds=self._time.getPrepareTime())
         now = now + shift
         target = target - prepareTime
         delta = target - now
         print("delta.day = {}", delta.days)
         print("delta.second = {}", delta.seconds)
-        if delta.days > 0:
+        if delta.days < 0:
             return 1
         else :
             return 0
@@ -72,14 +72,14 @@ class Content(threading.Thread):
     def isAfterBufferTime(self):
         now = datetime.datetime.now()
         target = datetime.datetime.strptime(self._time.getScheduledDate(), "%Y/%m/%d")
-        shift = datetime.timedelta(days=self._center.getBookingGap())
+        shift = datetime.timedelta(days=self._center.getBookingGap() - 1)
         bufferTime = datetime.timedelta(seconds=self._time.getBufferTime())
         now = now + shift
         target = target + bufferTime
         delta = target - now
         print("delta.day = {}", delta.days)
         print("delta.second = {}", delta.seconds)
-        if delta.days > 0:
+        if delta.days < 0:
             return 1
         else :
             return 0

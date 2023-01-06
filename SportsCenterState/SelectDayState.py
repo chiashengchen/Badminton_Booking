@@ -14,21 +14,15 @@ class SelectDayState(State):
             driver.find_element(By.XPATH, '//*[@onclick=\"GoToStep2(\'' + content.getTime().getScheduledDate() + '\',1)\"]').click()
             content.setState(CalculateEmptyCourtsState())
         except NoSuchElementException:
-            if(center.isDateAvailable()):
-                # TODO Still have bug to deal with ...
+            while(not content.isAfterPrepareTime()):
+                print("[WAITING]")
+                time.sleep(10)
+                pass
+            if(content.isAfterBufferTime()):
                 print("[NOT AVAILABLE IN " + center.getName() +"]")
                 content.setState(End.EndState())
-            else:
-                while(not center.isWithinSec(10)):
-                    print("[WAITING]")
-                    time.sleep(10)
-                    pass
+            else :
                 time.sleep(2)
                 driver.refresh()
                 content.setState(SelectDayState())
         content.handle()
-        # //*[@id="ContentPlaceHolder1_Date_Lab"]/table/tbody/tr[5]/td[6]/table/tbody/tr[2]/td
-        # //*[@id="ContentPlaceHolder1_Date_Lab"]/table/tbody/tr[5]/td[7]/table/tbody/tr[1]/td
-        # //*[@id="ContentPlaceHolder1_Date_Lab"]/table/tbody/tr[6]/td[7]/table/tbody/tr[2]/td
-
-        # //td[contains(text(),'26')]
