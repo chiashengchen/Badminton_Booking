@@ -1,3 +1,4 @@
+import datetime
 from prometheus_client import Enum
 
 class DayPeriods(Enum):
@@ -6,13 +7,6 @@ class DayPeriods(Enum):
     EVENING = 2
 
 class ScheduledTime: 
-    year : int
-    month : int
-    day : int
-    startTime : int
-    endTime : int 
-    hours : int
-    court : int
     
     def __init__(self, year, month, day, startTime, endTime, hours, court):
         self._year = int(year)
@@ -22,15 +16,28 @@ class ScheduledTime:
         self._endTime = int(endTime)
         self._hours = int(hours)
         self._court = int(court)
-        if self._endTime <= self._startTime or self._startTime <= 6 or self._endTime >= 23:
-            raise BaseException("Error")
+        self._prepareTime = 10
+        self._bufferTime = 10
+        if self._endTime <= self._startTime or self._startTime < 6 or self._endTime > 22:
+            raise BaseException("Time Invalid Error")
+        if not self.isVaildDate():
+            raise BaseException("Date Invalid Error")
 
     def getScheduledDate(self):
-        if self._day < 10:
-            brookingDay = str(self._year) + '/'+ str(self._month) + '/0' + str(self._day)
+        if self._month < 10:
+            orderDay = str(self._year) + '/0'+ str(self._month)
         else:
-            brookingDay = str(self._year) + '/'+ str(self._month) + '/' + str(self._day)
-        return brookingDay
+            orderDay = str(self._year) + '/'+ str(self._month)
+        if self._day < 10:
+            orderDay = orderDay + '/0' + str(self._day)
+        else:
+            orderDay = orderDay + '/' + str(self._day)
+        return orderDay
+
+    def getScheduledDateWithBuffer(self):
+        orderDay = self.getScheduledDate()
+        orderDay = orderDay + '/' + str(self._bufferTime)
+        return orderDay
 
     def getCalendarDayPeriods(self):
         if self._startTime >= 18:
@@ -51,3 +58,18 @@ class ScheduledTime:
     
     def getOrderTime(self):
         return self._hours
+
+    def isVaildDate(self):
+        now = datetime.datetime.now()
+        target = datetime.datetime.strptime(self.getScheduledDate(), "%Y/%m/%d")
+        delta = target - now
+        if(delta.days < 0):
+            return 0
+        else :
+            return 1
+
+    def getPrepareTime(self) :
+        return self._prepareTime
+    
+    def getBufferTime(self) :
+        return self._bufferTime

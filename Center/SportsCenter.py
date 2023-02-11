@@ -1,15 +1,14 @@
-import threading
+import datetime
 from Time.ScheduledTime import ScheduledTime
 from Info.PersonalInfo import PersonalInfo
 from SportsCenterState.State import State
 class SportsCenter:
-    time : ScheduledTime
-    info : PersonalInfo
-    totalCourts : int
-    state : State
-    targetTime : int
-    orderNum : int
-    appiontmentInterval : int
+    _time : ScheduledTime
+    _totalCourts : int
+    _targetTime : int
+    _orderNum : int
+    _appiontmentInterval : int
+    _bookingGap : int
 
     def __init__(self, time):
         self._time = time
@@ -45,3 +44,32 @@ class SportsCenter:
     
     def setCount(self, bool):
         self._isCount = bool
+
+    def isDateAvailable(self):
+        now = datetime.datetime.now()
+        appointment = self._time.getScheduledDateWithBuffer()
+        # 假如 date 不能點，但其實是沒出現。給 30 秒的 buffer
+        target = datetime.datetime.strptime(appointment, "%Y/%m/%d/%S")
+        # target = datetime.datetime.strptime(appointment, "%Y/%m/%d")
+        delta = target - now
+        if(delta.days < 0 or delta.days >= (self._bookingGap - 1)):
+            return 0
+        else :
+            return 1
+        
+    def isWithinSec(self, sec : int):
+        now = datetime.datetime.now()
+        appointment = self._time.getScheduledDate()
+        target = datetime.datetime.strptime(appointment, "%Y/%m/%d")
+        delta = target - now
+        print(str(delta.seconds) + " seconds left")
+        if(delta.days == (self._bookingGap - 1) and delta.seconds < sec):
+            return 1
+        else :
+            return 0
+
+    def getName(self):
+        return self._name
+
+    def getBookingGap(self) :
+        return self._bookingGap
